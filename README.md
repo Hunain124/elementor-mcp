@@ -11,7 +11,7 @@ Connect Codex (or another local stdio MCP client) to WordPress pages and Element
 
 ## 1. Install the WordPress plugin
 
-1. Download `elementor-mcp-bridge.zip` from the GitHub release (or create it from the `wordpress-plugin` folder).
+1. Download `elementor-mcp-bridge.zip` from this repository's Code page (or create it from the `wordpress-plugin` folder).
 2. In WordPress, go to **Plugins → Add New Plugin → Upload Plugin**, upload the ZIP, then activate **Elementor MCP Bridge**.
 3. Open **Settings → Elementor MCP**. Select the WordPress user to use and set a long random token. Save it somewhere private; the site stores only a hash, so it cannot show you the token again.
 
