@@ -1,0 +1,9 @@
+{
+  "name": "wordpress-elementor-mcp",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": { "start": "tsx src/index.ts" },
+  "dependencies": { "@modelcontextprotocol/sdk": "^1.12.1", "dotenv": "^16.5.0", "zod": "^3.25.0" },
+  "devDependencies": { "tsx": "^4.19.0", "typescript": "^5.8.0" }
+}
