@@ -1,11 +1,11 @@
 # WordPress Elementor MCP
 
-Connect Codex (or another local stdio MCP client) to WordPress pages and Elementor layouts. The WordPress plugin provides a small, token-protected REST bridge; the MCP server runs on your computer. The default setup is read-only.
+Connect Codex (or another local stdio MCP client) to WordPress pages, Elementor layouts, and supported performance settings. The WordPress plugin provides a token-protected REST bridge; the MCP server runs on your computer. Mutations remain disabled by default.
 
 ## Requirements
 
 - WordPress with Elementor active, reachable over HTTPS
-- A WordPress account allowed to edit the pages you want to access
+- A WordPress account allowed to edit the pages you want to access; performance tools require `manage_options`
 - Node.js 20 or newer
 - Codex desktop or another MCP client that supports local stdio servers
 
@@ -45,8 +45,17 @@ Save the configuration and fully restart Codex. The server should then appear in
 - `list_pages` — find editable pages by title or status.
 - `get_elementor_page` — read page details and its Elementor layout.
 - `update_elementor_page` — replace the page's full Elementor content array; disabled by default.
+- `get_elementor_document` / `update_elementor_document` — inspect and edit Elementor Library templates such as headers, in addition to pages.
+- `get_home_meta_description` / `update_home_meta_description` — manage a plain-text front-page description when a supported SEO plugin is not active.
+- `get_elementor_local_fonts` / `update_elementor_local_fonts` — inspect or enable Elementor's local Google Fonts feature.
+- `get_site_performance` — inspect WordPress/PHP versions, cache indicators, and detected performance plugins.
+- `get_litespeed_settings` — read a limited set of LiteSpeed Cache optimization switches.
+- `update_litespeed_settings` — change supported LiteSpeed Cache switches, including JavaScript loading mode and font display; a successful change purges LiteSpeed-managed caches.
+- `purge_litespeed_cache` — explicitly purge LiteSpeed-managed caches.
 
-To enable edits, set `WP_ALLOW_WRITES=true` in `.env` and restart the MCP server. Every update saves a WordPress revision first. Review the page in Elementor after an update.
+To enable edits and performance changes, set `WP_ALLOW_WRITES=true` in `.env` and restart the MCP server. Elementor updates save a WordPress revision. Performance settings are restricted to a fixed allowlist; the bridge does not expose arbitrary WordPress options. The selected WordPress user must have `manage_options` for performance tools.
+
+LiteSpeed settings are available only when LiteSpeed Cache is installed and active. CSS async loading and UCSS depend on QUIC.cloud services; service usage may incur charges. CSS/JS combination and other optimization switches can affect how the site renders, so change them in small steps and inspect key pages after each change. The bridge does not install or activate plugins, edit server configuration, or assume that an optimization plugin is compatible with the host.
 
 ## ChatGPT web connection
 
